@@ -5774,22 +5774,20 @@ const _yAxis = /*@__PURE__*/new Vector3(0, 1, 0);
 const _zAxis = /*@__PURE__*/new Vector3(0, 0, 1);
 
 const _addedEvent = {
-	type: 'added'
+	type: "added"
 };
 const _removedEvent = {
-	type: 'removed'
+	type: "removed"
 };
 
 class Object3D extends EventDispatcher {
 	constructor() {
 		super();
 		this.isObject3D = true;
-		Object.defineProperty(this, 'id', {
-			value: _object3DId++
-		});
+		this.id = _object3DId++;
 		this.uuid = generateUUID();
-		this.name = '';
-		this.type = 'Object3D';
+		this.name = "";
+		this.type = "Object3D";
 		this.parent = null;
 		this.children = [];
 		this.up = Object3D.DefaultUp.clone();
@@ -5988,7 +5986,7 @@ class Object3D extends EventDispatcher {
 		}
 
 		if (object === this) {
-			console.error('THREE.Object3D.add: object can\'t be added as a child of itself.', object);
+			console.error("THREE.Object3D.add: object can't be added as a child of itself.", object);
 			return this;
 		}
 
@@ -6001,7 +5999,7 @@ class Object3D extends EventDispatcher {
 			this.children.push(object);
 			object.dispatchEvent(_addedEvent);
 		} else {
-			console.error('THREE.Object3D.add: object not an instance of THREE.Object3D.', object);
+			console.error("THREE.Object3D.add: object not an instance of THREE.Object3D.", object);
 		}
 
 		return this;
@@ -6068,11 +6066,11 @@ class Object3D extends EventDispatcher {
 	}
 
 	getObjectById(id) {
-		return this.getObjectByProperty('id', id);
+		return this.getObjectByProperty("id", id);
 	}
 
 	getObjectByName(name) {
-		return this.getObjectByProperty('name', name);
+		return this.getObjectByProperty("name", name);
 	}
 
 	getObjectByProperty(name, value) {
@@ -6205,7 +6203,7 @@ class Object3D extends EventDispatcher {
 
 	toJSON(meta) {
 		// meta is a string when called from JSON.stringify
-		const isRootObject = meta === undefined || typeof meta === 'string';
+		const isRootObject = meta === undefined || typeof meta === "string";
 		const output = {}; // meta is a hash used to collect geometries, materials.
 		// not providing it implies that this is the root object
 		// being serialized.
@@ -6224,8 +6222,8 @@ class Object3D extends EventDispatcher {
 			};
 			output.metadata = {
 				version: 4.5,
-				type: 'Object',
-				generator: 'Object3D.toJSON'
+				type: "Object",
+				generator: "Object3D.toJSON"
 			};
 		} // standard Object3D serialization
 
@@ -6233,19 +6231,19 @@ class Object3D extends EventDispatcher {
 		const object = {};
 		object.uuid = this.uuid;
 		object.type = this.type;
-		if (this.name !== '') object.name = this.name;
+		if (this.name !== "") object.name = this.name;
 		if (this.castShadow === true) object.castShadow = true;
 		if (this.receiveShadow === true) object.receiveShadow = true;
 		if (this.visible === false) object.visible = false;
 		if (this.frustumCulled === false) object.frustumCulled = false;
 		if (this.renderOrder !== 0) object.renderOrder = this.renderOrder;
-		if (JSON.stringify(this.userData) !== '{}') object.userData = this.userData;
+		if (JSON.stringify(this.userData) !== "{}") object.userData = this.userData;
 		object.layers = this.layers.mask;
 		object.matrix = this.matrix.toArray();
 		if (this.matrixAutoUpdate === false) object.matrixAutoUpdate = false; // object specific properties
 
 		if (this.isInstancedMesh) {
-			object.type = 'InstancedMesh';
+			object.type = "InstancedMesh";
 			object.count = this.count;
 			object.instanceMatrix = this.instanceMatrix.toJSON();
 			if (this.instanceColor !== null) object.instanceColor = this.instanceColor.toJSON();
@@ -34327,15 +34325,15 @@ class PointLightHelper extends Mesh {
 		// TODO: delete this comment?
 		const distanceGeometry = new THREE.IcosahedronGeometry( 1, 2 );
 		const distanceMaterial = new THREE.MeshBasicMaterial( { color: hexColor, fog: false, wireframe: true, opacity: 0.1, transparent: true } );
-		this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
+			this.lightSphere = new THREE.Mesh( bulbGeometry, bulbMaterial );
 		this.lightDistance = new THREE.Mesh( distanceGeometry, distanceMaterial );
-		const d = light.distance;
-		if ( d === 0.0 ) {
-			this.lightDistance.visible = false;
-		} else {
-			this.lightDistance.scale.set( d, d, d );
-		}
-		this.add( this.lightDistance );
+			const d = light.distance;
+			if ( d === 0.0 ) {
+				this.lightDistance.visible = false;
+			} else {
+				this.lightDistance.scale.set( d, d, d );
+			}
+			this.add( this.lightDistance );
 		*/
 	}
 
@@ -34352,12 +34350,12 @@ class PointLightHelper extends Mesh {
 		}
 		/*
 		const d = this.light.distance;
-			if ( d === 0.0 ) {
-				this.lightDistance.visible = false;
-			} else {
-				this.lightDistance.visible = true;
+				if ( d === 0.0 ) {
+					this.lightDistance.visible = false;
+				} else {
+					this.lightDistance.visible = true;
 			this.lightDistance.scale.set( d, d, d );
-			}
+				}
 		*/
 
 	}
@@ -34857,7 +34855,7 @@ class BoxHelper extends LineSegments {
 		1/___0/|
 		| 6__|_7
 		2/___3/
-			0: max.x, max.y, max.z
+				0: max.x, max.y, max.z
 		1: min.x, max.y, max.z
 		2: min.x, min.y, max.z
 		3: max.x, min.y, max.z
