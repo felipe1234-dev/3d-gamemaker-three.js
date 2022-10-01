@@ -64,27 +64,33 @@ class Object3D extends EventDispatcher {
 				configurable: true,
 				enumerable: true,
 				value: position,
+				writable: true,
 			},
 			rotation: {
 				configurable: true,
 				enumerable: true,
 				value: rotation,
+				writable: true,
 			},
 			quaternion: {
 				configurable: true,
 				enumerable: true,
 				value: quaternion,
+				writable: true,
 			},
 			scale: {
 				configurable: true,
 				enumerable: true,
 				value: scale,
+				writable: true,
 			},
 			modelViewMatrix: {
 				value: new Matrix4(),
+				writable: true,
 			},
 			normalMatrix: {
 				value: new Matrix3(),
+				writable: true,
 			},
 		});
 
