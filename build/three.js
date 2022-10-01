@@ -5814,28 +5814,34 @@
 				position: {
 					configurable: true,
 					enumerable: true,
-					value: position
+					value: position,
+					writable: true
 				},
 				rotation: {
 					configurable: true,
 					enumerable: true,
-					value: rotation
+					value: rotation,
+					writable: true
 				},
 				quaternion: {
 					configurable: true,
 					enumerable: true,
-					value: quaternion
+					value: quaternion,
+					writable: true
 				},
 				scale: {
 					configurable: true,
 					enumerable: true,
-					value: scale
+					value: scale,
+					writable: true
 				},
 				modelViewMatrix: {
-					value: new Matrix4()
+					value: new Matrix4(),
+					writable: true
 				},
 				normalMatrix: {
-					value: new Matrix3()
+					value: new Matrix3(),
+					writable: true
 				}
 			});
 			this.matrix = new Matrix4();
@@ -7425,12 +7431,12 @@
 		constructor() {
 			super();
 			this.isBufferGeometry = true;
-			Object.defineProperty(this, 'id', {
+			Object.defineProperty(this, "id", {
 				value: _id$1++
 			});
 			this.uuid = generateUUID();
-			this.name = '';
-			this.type = 'BufferGeometry';
+			this.name = "";
+			this.type = "BufferGeometry";
 			this.index = null;
 			this.attributes = {};
 			this.morphAttributes = {};
@@ -7599,7 +7605,7 @@
 				position.push(point.x, point.y, point.z || 0);
 			}
 
-			this.setAttribute('position', new Float32BufferAttribute(position, 3));
+			this.setAttribute("position", new Float32BufferAttribute(position, 3));
 			return this;
 		}
 
@@ -7738,7 +7744,7 @@
 			// (per vertex tangents)
 
 			if (index === null || attributes.position === undefined || attributes.normal === undefined || attributes.uv === undefined) {
-				console.error('THREE.BufferGeometry: .computeTangents() failed. Missing required attributes (index, position, normal or uv)');
+				console.error("THREE.BufferGeometry: .computeTangents() failed. Missing required attributes (index, position, normal or uv)");
 				return;
 			}
 
@@ -7748,11 +7754,11 @@
 			const uvs = attributes.uv.array;
 			const nVertices = positions.length / 3;
 
-			if (this.hasAttribute('tangent') === false) {
-				this.setAttribute('tangent', new BufferAttribute(new Float32Array(4 * nVertices), 4));
+			if (this.hasAttribute("tangent") === false) {
+				this.setAttribute("tangent", new BufferAttribute(new Float32Array(4 * nVertices), 4));
 			}
 
-			const tangents = this.getAttribute('tangent').array;
+			const tangents = this.getAttribute("tangent").array;
 			const tan1 = [],
 						tan2 = [];
 
@@ -7850,14 +7856,14 @@
 
 		computeVertexNormals() {
 			const index = this.index;
-			const positionAttribute = this.getAttribute('position');
+			const positionAttribute = this.getAttribute("position");
 
 			if (positionAttribute !== undefined) {
-				let normalAttribute = this.getAttribute('normal');
+				let normalAttribute = this.getAttribute("normal");
 
 				if (normalAttribute === undefined) {
 					normalAttribute = new BufferAttribute(new Float32Array(positionAttribute.count * 3), 3);
-					this.setAttribute('normal', normalAttribute);
+					this.setAttribute("normal", normalAttribute);
 				} else {
 					// reset existing normals to zero
 					for (let i = 0, il = normalAttribute.count; i < il; i++) {
@@ -7917,7 +7923,7 @@
 
 
 		merge() {
-			console.error('THREE.BufferGeometry.merge() has been removed. Use THREE.BufferGeometryUtils.mergeBufferGeometries() instead.');
+			console.error("THREE.BufferGeometry.merge() has been removed. Use THREE.BufferGeometryUtils.mergeBufferGeometries() instead.");
 			return this;
 		}
 
@@ -7959,7 +7965,7 @@
 
 
 			if (this.index === null) {
-				console.warn('THREE.BufferGeometry.toNonIndexed(): BufferGeometry is already non-indexed.');
+				console.warn("THREE.BufferGeometry.toNonIndexed(): BufferGeometry is already non-indexed.");
 				return this;
 			}
 
@@ -8005,14 +8011,14 @@
 			const data = {
 				metadata: {
 					version: 4.5,
-					type: 'BufferGeometry',
-					generator: 'BufferGeometry.toJSON'
+					type: "BufferGeometry",
+					generator: "BufferGeometry.toJSON"
 				}
 			}; // standard BufferGeometry serialization
 
 			data.uuid = this.uuid;
 			data.type = this.type;
-			if (this.name !== '') data.name = this.name;
+			if (this.name !== "") data.name = this.name;
 			if (Object.keys(this.userData).length > 0) data.userData = this.userData;
 
 			if (this.parameters !== undefined) {
@@ -8021,8 +8027,6 @@
 				for (const key in parameters) {
 					if (parameters[key] !== undefined) data[key] = parameters[key];
 				}
-
-				return data;
 			} // for simplicity the code assumes attributes are not shared across geometries, see #15811
 
 
@@ -8166,7 +8170,7 @@
 
 		dispose() {
 			this.dispatchEvent({
-				type: 'dispose'
+				type: "dispose"
 			});
 		}
 
