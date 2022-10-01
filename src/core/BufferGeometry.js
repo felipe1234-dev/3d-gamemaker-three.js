@@ -753,8 +753,6 @@ class BufferGeometry extends EventDispatcher {
 			for (const key in parameters) {
 				if (parameters[key] !== undefined) data[key] = parameters[key];
 			}
-
-			return data;
 		}
 
 		// for simplicity the code assumes attributes are not shared across geometries, see #15811
