@@ -765,6 +765,14 @@ class BufferGeometry extends EventDispatcher {
 			data.data.index = {
 				type: index.array.constructor.name,
 				array: Array.prototype.slice.call(index.array),
+				itemSize: index.itemSize,
+				normalized: index.normalized,
+				name: index.name,
+				usage: index.usage,
+				updateRange: {
+					offset: index.updateRange.offset,
+					count: index.updateRange.count,
+				}
 			};
 		}
 
