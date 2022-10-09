@@ -8038,7 +8038,15 @@
 			if (index !== null) {
 				data.data.index = {
 					type: index.array.constructor.name,
-					array: Array.prototype.slice.call(index.array)
+					array: Array.prototype.slice.call(index.array),
+					itemSize: index.itemSize,
+					normalized: index.normalized,
+					name: index.name,
+					usage: index.usage,
+					updateRange: {
+						offset: index.updateRange.offset,
+						count: index.updateRange.count
+					}
 				};
 			}
 
@@ -24015,10 +24023,10 @@
 			path.absarc(0, -length / 2, radius, Math.PI * 1.5, 0);
 			path.absarc(0, length / 2, radius, 0, Math.PI * 0.5);
 			super(path.getPoints(capSegments), radialSegments);
-			this.type = 'CapsuleGeometry';
+			this.type = "CapsuleGeometry";
 			this.parameters = {
 				radius: radius,
-				height: length,
+				length: length,
 				capSegments: capSegments,
 				radialSegments: radialSegments
 			};

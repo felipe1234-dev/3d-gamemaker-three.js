@@ -7543,9 +7543,9 @@ class Object3D extends EventDispatcher {
 		this.userData = {};
 	}
 
-	onBeforeRender(/* renderer, scene, camera, geometry, material, group */) {}
+	onBeforeRender(/* renderer, scene, camera, geometry, material, group */) { }
 
-	onAfterRender(/* renderer, scene, camera, geometry, material, group */) {}
+	onAfterRender(/* renderer, scene, camera, geometry, material, group */) { }
 
 	applyMatrix4(matrix) {
 		if (this.matrixAutoUpdate) this.updateMatrix();
@@ -7837,7 +7837,7 @@ class Object3D extends EventDispatcher {
 		return target.set(e[8], e[9], e[10]).normalize();
 	}
 
-	raycast(/* raycaster, intersects */) {}
+	raycast(/* raycaster, intersects */) { }
 
 	traverse(callback) {
 		callback(this);
@@ -10261,6 +10261,14 @@ class BufferGeometry extends EventDispatcher {
 			data.data.index = {
 				type: index.array.constructor.name,
 				array: Array.prototype.slice.call(index.array),
+				itemSize: index.itemSize,
+				normalized: index.normalized,
+				name: index.name,
+				usage: index.usage,
+				updateRange: {
+					offset: index.updateRange.offset,
+					count: index.updateRange.count,
+				}
 			};
 		}
 
@@ -32745,32 +32753,31 @@ class LatheGeometry extends BufferGeometry {
 }
 
 class CapsuleGeometry extends LatheGeometry {
-
-	constructor( radius = 1, length = 1, capSegments = 4, radialSegments = 8 ) {
-
+	constructor(radius = 1, length = 1, capSegments = 4, radialSegments = 8) {
 		const path = new Path();
-		path.absarc( 0, - length / 2, radius, Math.PI * 1.5, 0 );
-		path.absarc( 0, length / 2, radius, 0, Math.PI * 0.5 );
+		path.absarc(0, -length / 2, radius, Math.PI * 1.5, 0);
+		path.absarc(0, length / 2, radius, 0, Math.PI * 0.5);
 
-		super( path.getPoints( capSegments ), radialSegments );
+		super(path.getPoints(capSegments), radialSegments);
 
-		this.type = 'CapsuleGeometry';
+		this.type = "CapsuleGeometry";
 
 		this.parameters = {
 			radius: radius,
-			height: length,
+			length: length,
 			capSegments: capSegments,
 			radialSegments: radialSegments,
 		};
-
 	}
 
-	static fromJSON( data ) {
-
-		return new CapsuleGeometry( data.radius, data.length, data.capSegments, data.radialSegments );
-
+	static fromJSON(data) {
+		return new CapsuleGeometry(
+			data.radius,
+			data.length,
+			data.capSegments,
+			data.radialSegments
+		);
 	}
-
 }
 
 class CircleGeometry extends BufferGeometry {
