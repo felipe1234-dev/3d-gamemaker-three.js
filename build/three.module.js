@@ -8821,11 +8821,11 @@ class Material extends EventDispatcher {
 
 		if (this.wireframe === true) data.wireframe = this.wireframe;
 		if (this.wireframeLinewidth > 1) data.wireframeLinewidth = this.wireframeLinewidth;
-		if (this.wireframeLinecap !== 'round') data.wireframeLinecap = this.wireframeLinecap;
-		if (this.wireframeLinejoin !== 'round') data.wireframeLinejoin = this.wireframeLinejoin;
+		if (this.wireframeLinecap) data.wireframeLinecap = this.wireframeLinecap;
+		if (this.wireframeLinejoin) data.wireframeLinejoin = this.wireframeLinejoin;
 
-		if (this.linecap !== 'round') data.linecap = this.linecap;
-		if (this.linejoin !== 'round') data.linejoin = this.linejoin;
+		if (this.linecap) data.linecap = this.linecap;
+		if (this.linejoin) data.linejoin = this.linejoin;
 
 		if (this.flatShading === true) data.flatShading = this.flatShading;
 
