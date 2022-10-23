@@ -116,9 +116,9 @@ class Object3D extends EventDispatcher {
 		this.userData = {};
 	}
 
-	onBeforeRender(/* renderer, scene, camera, geometry, material, group */) {}
+	onBeforeRender(/* renderer, scene, camera, geometry, material, group */) { }
 
-	onAfterRender(/* renderer, scene, camera, geometry, material, group */) {}
+	onAfterRender(/* renderer, scene, camera, geometry, material, group */) { }
 
 	applyMatrix4(matrix) {
 		if (this.matrixAutoUpdate) this.updateMatrix();
@@ -410,7 +410,7 @@ class Object3D extends EventDispatcher {
 		return target.set(e[8], e[9], e[10]).normalize();
 	}
 
-	raycast(/* raycaster, intersects */) {}
+	raycast(/* raycaster, intersects */) { }
 
 	traverse(callback) {
 		callback(this);
@@ -545,6 +545,7 @@ class Object3D extends EventDispatcher {
 
 		const object = {};
 
+		object.id = this.id;
 		object.uuid = this.uuid;
 		object.type = this.type;
 
