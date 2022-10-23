@@ -6235,6 +6235,7 @@ class Object3D extends EventDispatcher {
 
 
 		const object = {};
+		object.id = this.id;
 		object.uuid = this.uuid;
 		object.type = this.type;
 		if (this.name !== "") object.name = this.name;
@@ -6931,6 +6932,8 @@ class Material extends EventDispatcher {
 		if (this.wireframeLinewidth > 1) data.wireframeLinewidth = this.wireframeLinewidth;
 		if (this.wireframeLinecap !== 'round') data.wireframeLinecap = this.wireframeLinecap;
 		if (this.wireframeLinejoin !== 'round') data.wireframeLinejoin = this.wireframeLinejoin;
+		if (this.linecap !== 'round') data.linecap = this.linecap;
+		if (this.linejoin !== 'round') data.linejoin = this.linejoin;
 		if (this.flatShading === true) data.flatShading = this.flatShading;
 		if (this.visible === false) data.visible = false;
 		if (this.toneMapped === false) data.toneMapped = false;
